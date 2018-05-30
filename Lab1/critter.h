@@ -22,52 +22,106 @@ public:
      */
     Critter();
     Critter(int hunger);
-    ~Critter();
+    Critter(int hunger,int active,bool live,bool sleep){
+    hunger_=hunger;
+    active_=active;
+    live_=live;
+    sleep_=sleep;
+    };
+  //  ~Critter();
+
+	/**
+     * @brief set_live функция устанавливает состояние животного
+     * если уровень голода >30 живность сдохла
+      */
+	void set_live(int hunger) {
+                 if (hunger>30) {
+                     this->live_=false;
+                     cout<<"DIE! RIP!"<<endl;
+                 }
+                 else this->live_=true;
+	};
+
 
     /**
      * @brief getHungerLevel функция возвращает текущий уровень
-     * оголодалости животного
+     * оголодалости животного и проверяет живо ли животное
      * @return уровень голода
      */
-    int getHungerLevel();
 
+    int getHungerLevel(){
+		int hungerLevel;
+                hungerLevel=this->hunger_;
+                //set_live(hungerLevel);
+		return hungerLevel;
+	};
+	
     /**
      * @brief passTime функция эмуляция прошедшего времени
      * При вызове увеличивает уровень голода,
      * если уровень голода превысил допустимый порог,
      * то живность умирает
      */
-    void passTime();
+    void passTime(int times){
+                 this->hunger_+=times;
+             set_live(this->hunger_);
+	};
 
     /**
+     * @brief set_live функция устанавливает состояние животного
+     * если уровень активности <5 живность хочет спать
+      */
+	void set_sleep(int active) {
+                 if (active<5) {
+                     this->sleep_=true;
+                 cout<<"ZZZZZZZZZZZzzzzzzzzzzzzz........"<<endl;
+                 }
+                 else this->sleep_=false;
+	};
+	/**
      * @brief getActiveLevel функция возвращает уровень
      * питомца к активности, при низком уровене хочется спать
      * ZZZZZZZZZZZzzzzzzzzzzzz.....
      * @return
      */
-    int getActiveLevel();
+    int getActiveLevel(){
+		int activeLevel;
+                activeLevel=this->active_;
+                //set_sleep(activeLevel);
+		return activeLevel;
+	};
 
     /**
      * @brief sleep
      * Повышает уровень активности
      */
-    void sleep();
+    void sleep(int times){
+                 this->active_+=times;
+                 set_sleep(this->active_);
+	};
 
     /**
      * @brief feed
      * Понижает уровень голода
      */
-    void feed();
-
+    void feed(int times){
+                 this->hunger_-=times;
+             set_live(this->hunger_);
+	};
     /**
      * @brief play
      * Понижает уровень активности, утомляет
      */
-    void play();
+    void play(int times){
+                 this->active_-=times;
+                 set_sleep(this->active_);
+	};
 
 private:
     int hunger_;
     int active_;
+    bool live_;
+    bool sleep_;
 };
 
 #endif
