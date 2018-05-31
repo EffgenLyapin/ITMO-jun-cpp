@@ -55,7 +55,7 @@ public:
         if (i!=-1)
         {
             if (First_Names[i]!="unknown") cout<<"Uzhe bilo izmeneniye First_Name"<<endl;
-            if (First_Names[i]=="unknown") First_Names[i]=first_name;
+            else First_Names[i]=first_name;
         }
         else
         {
@@ -85,7 +85,7 @@ public:
           if (i!=-1)
           {
               if (Last_Names[i]!="unknown") cout<<"Uzhe bilo izmeneniye Last_Name"<<endl;
-              if (Last_Names[i]=="unknown") Last_Names[i]=last_name;
+              else Last_Names[i]=last_name;
           }
           else
           {
@@ -121,68 +121,45 @@ public:
       }
       return "No Person";
   }
+  string History (int x)
+  {
+      string first_name_History="";
+      string last_name_History="";
+      first_name_History=First_Names[Find_Not_Find_String(First_Names,x,"unknown")];
+      last_name_History=Last_Names[Find_Not_Find_String(Last_Names,x,"unknown")];
+      int m=Find_Not_Find_String(First_Names,Find_Not_Find_String(First_Names,x,"unknown")-1,"unknown");
+      int n=Find_Not_Find_String(Last_Names,Find_Not_Find_String(Last_Names,x,"unknown")-1,"unknown");
+      while (m>=0)
+      {
+          first_name_History=first_name_History+"("+First_Names[Find_Not_Find_String(First_Names,m,"unknown")]+")";
+          m=Find_Not_Find_String(First_Names,m-1,"unknown");
+      }
+      while (n>=0)
+      {
+          last_name_History=last_name_History+"("+Last_Names[Find_Not_Find_String(Last_Names,n,"unknown")]+")";
+          n=Find_Not_Find_String(Last_Names,n-1,"unknown");
+      }
+      return first_name_History+" "+last_name_History;
+
+  }
 
   string GetFullNameWithHistory(int year) {
     // получить имя и фамилию по состоянию на конец года year
       if (year>=Dates[0])
       {
-          string first_name_History="";
-          string last_name_History="";
           int i=Find_Years(year);
           if (i!=-1)
           {
-              first_name_History=First_Names[Find_Not_Find_String(First_Names,i,"unknown")];
-              last_name_History=Last_Names[Find_Not_Find_String(Last_Names,i,"unknown")];
-              int m=Find_Not_Find_String(First_Names,Find_Not_Find_String(First_Names,i,"unknown")-1,"unknown");
-              int n=Find_Not_Find_String(Last_Names,Find_Not_Find_String(Last_Names,i,"unknown")-1,"unknown");
-              while (m>=0)
-              {
-                  first_name_History=first_name_History+"("+First_Names[Find_Not_Find_String(First_Names,m,"unknown")]+")";
-                  m=Find_Not_Find_String(First_Names,m-1,"unknown");
-              }
-              while (n>=0)
-              {
-                  last_name_History=last_name_History+"("+Last_Names[Find_Not_Find_String(Last_Names,n,"unknown")]+")";
-                  n=Find_Not_Find_String(Last_Names,n-1,"unknown");
-              }
-              return first_name_History+" "+last_name_History;
+              return History(i);
           }
           if (year>Dates[Dates.size()-1])
           {
-              first_name_History=First_Names[Find_Not_Find_String(First_Names,First_Names.size()-1,"unknown")];
-              last_name_History=Last_Names[Find_Not_Find_String(Last_Names,Last_Names.size()-1,"unknown")];
-              int m=Find_Not_Find_String(First_Names,Find_Not_Find_String(First_Names,First_Names.size()-1,"unknown")-1,"unknown");
-              int n=Find_Not_Find_String(Last_Names,Find_Not_Find_String(Last_Names,Last_Names.size()-1,"unknown")-1,"unknown");
-              while (m>=0)
-              {
-                  first_name_History=first_name_History+"("+First_Names[Find_Not_Find_String(First_Names,m,"unknown")]+")";
-                  m=Find_Not_Find_String(First_Names,m-1,"unknown");
-              }
-              while (n>=0)
-              {
-                  last_name_History=last_name_History+"("+Last_Names[Find_Not_Find_String(Last_Names,n,"unknown")]+")";
-                  n=Find_Not_Find_String(Last_Names,n-1,"unknown");
-              }
-              return first_name_History+" "+last_name_History;
+              return History(Dates.size()-1);
           }
           if (i==-1&&year<Dates[Dates.size()-1]&&year>Dates[0])
           {
               int k=Find_Next_Element(Dates,year);
-              first_name_History=First_Names[Find_Not_Find_String(First_Names,k-1,"unknown")];
-              last_name_History=Last_Names[Find_Not_Find_String(Last_Names,k-1,"unknown")];
-              int m=Find_Not_Find_String(First_Names,Find_Not_Find_String(First_Names,k-1,"unknown")-1,"unknown");
-              int n=Find_Not_Find_String(Last_Names,Find_Not_Find_String(Last_Names,k-1,"unknown")-1,"unknown");
-              while (m>=0)
-              {
-                  first_name_History=first_name_History+"("+First_Names[Find_Not_Find_String(First_Names,m,"unknown")]+")";
-                  m=Find_Not_Find_String(First_Names,m-1,"unknown");
-              }
-              while (n>=0)
-              {
-                  last_name_History=last_name_History+"("+Last_Names[Find_Not_Find_String(Last_Names,n,"unknown")]+")";
-                  n=Find_Not_Find_String(Last_Names,n-1,"unknown");
-              }
-              return first_name_History+" "+last_name_History;
+              return History(k-1);
           }
           if (i==-1 || year<Dates[0]) return "Incognito";
       }
@@ -194,7 +171,7 @@ private:
   vector <string> Last_Names{""};
 };
 
-int main(int argc, char *argv[])
+int main()
 {
    // Person person (1960,"Ivan","Ivanov");
    // person.ChangeFirstName(1965, "Polina");
@@ -223,6 +200,8 @@ int main(int argc, char *argv[])
     //    cout << person.GetFullNameWithHistory(year) << endl;
     //  }
     person.ChangeFirstName(1963, "Margarita");
+    person.ChangeLastName(1963, "Roberts");
+    person.ChangeLastName(1964, "Ivanova");
     person.ChangeLastName(1964, "Petrova");
     person.ChangeLastName(1967, "Turman");
     person.ChangeFirstName(1965, "Appolinaria");
