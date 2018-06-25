@@ -5,66 +5,73 @@
 
 using namespace std;
 
-//EFFECTS:  Default constructor.  Constructs an empty IntVector.
+//РЕЗУЛЬТАТ:  Конструктор по умолчанию.  Создает пустой IntVector.
 IntVector::IntVector()
   : numElements(0) {}
 
-//REQUIRES: this IntVector is not full
-//MODIFIES: this IntVector
-//EFFECTS:  Adds value to the end of this IntVector.
+//ТРЕБОВАНИЕ: IntVector не переполнен
+//ИЗМЕНЕНИЯ:  IntVector
+//РЕЗУЛЬТАТ:  Добавляет элемент в конец IntVector.
 void IntVector::push_back(int value){
-  //TASK 1 - YOUR CODE HERE
+  //реализация
 }
 
-//REQUIRES: this IntVector is not empty
-//MODIFIES: this IntVector
-//EFFECTS:  Removes the last element in this IntVector.
+//ТРЕБОВАНИЕ: IntVector не пустой
+//ИЗМЕНЕНИЯ:  IntVector
+//РЕЗУЛЬТАТ:  Удаляет последний элемент из IntVector.
 void IntVector::pop_back(){
-  //TASK 1 - YOUR CODE HERE
+ //реализация
 }
 
-//REQUIRES: 0 <= index < number of elements in this IntVector
-//EFFECTS:  Returns (by reference) the element at the given index.
+//ТРЕБОВАНИЕ: 0 <= index < количества элементов IntVector
+//РЕЗУЛЬТАТ:  Возвращает (по ссылке) элемент с заданным индексом.
 int &IntVector::at(int index) {
-  assert(false); //TASK 1 - REPLACE WITH YOUR CODE
+  assert(false); 
+  //реализация
 }
 
-//REQUIRES: 0 <= index < number of elements in this IntVector
-//EFFECTS:  Returns (by reference) the element at the given index.
+//ТРЕБОВАНИЕ: 0 <= index < количества элементов IntVector
+//РЕЗУЛЬТАТ:  Возвращает (по ссылке) элемент с заданным индексом.
 const int &IntVector::at(int index) const {
-  assert(false); //TASK 1 - REPLACE WITH YOUR CODE
+  assert(false);
+  //реализация
 }
 
-//REQUIRES: 0 <= index < number of elements in this IntVector
-//EFFECTS:  Returns (by reference) the element at the given index.
+//ТРЕБОВАНИЕ: 0 <= index < количества элементов IntVector
+//РЕЗУЛЬТАТ:  Возвращает (по ссылке) элемент с заданным индексом.
 int &IntVector::operator[](int index) {
-  assert(false); //TASK 1 - REPLACE WITH YOUR CODE
+  assert(false); 
+  //реализация
 }
 
-//REQUIRES: 0 <= index < number of elements in this IntVector
-//EFFECTS:  Returns (by reference) the element at the given index.
+//ТРЕБОВАНИЕ: 0 <= index < количества элементов IntVector
+//РЕЗУЛЬТАТ:  Возвращает (по ссылке) элемент с заданным индексом.
 const int &IntVector::operator[](int index) const {
-  assert(false); //TASK 1 - REPLACE WITH YOUR CODE
+  assert(false); 
+  //реализация
 }
 
-//EFFECTS:  Returns the number of elements of this IntVector.
+//РЕЗУЛЬТАТ:  Возвращает количества элементов IntVector.
 int IntVector::size() const{
-  return 0; //TASK 1 - REPLACE WITH YOUR CODE
+  return 0; 
+  //реализация
 }
 
-//EFFECTS:  Returns true if this IntVector is empty, false otherwise.
+//РЕЗУЛЬТАТ: Возвращает true если IntVector пустой, false в противном случае.
 bool IntVector::empty() const{
-  return true; //TASK 1 - REPLACE WITH YOUR CODE
+  return true; 
+  //реализация
 }
 
-//EFFECTS:  Returns true if this IntVector is at capacity, false otherwise.
-//          That is, you may add elements if and only if full() is false.
+//РЕЗУЛЬТАТ: Возвращает true если IntVector заполнен, false в противном случае.
+//          Добавить элемент можно только в случае когда full() возвращает false.
 bool IntVector::full() const{
-  return true; //TASK 1 - REPLACE WITH YOUR CODE
+  return true;
+  //реализация
 }
 
-//EFFECTS:  Prints to os all elements in this IntVector
-//          in the format (all on one line, followed by newline):
+//РЕЗУЛЬТАТ: Выводит все элементы IntVector
+//          в следующем формате:
 //          [ elem0, elem1, elem2, ... ]
 void IntVector::print(ostream &os) const{
   os << "[ ";
@@ -78,18 +85,19 @@ void IntVector::print(ostream &os) const{
   os << "]";
 }
 
-//EFFECTS: Returns true if the representation invariant holds.
-//         For IntVector, the only invariant is 0 <= numElements <= CAPACITY.
+//РЕЗУЛЬТАТ: Возвращает true в случае если инвариант представления выполняется.
+//           Для IntVector только один инвариант представления 0 <= numElements <= CAPACITY.
 bool IntVector::check_invariant() const{
-  return false; //TASK 3 - REPLACE WITH YOUR CODE
+  return false; 
+  //реализация
 }
 
-//EFFECTS:  Prints to os all elements in this IntVector
-//          in the format (all on one line, followed by newline):
+//РЕЗУЛЬТАТ: Выводит все элементы IntVector
+//          в следующем формате:
 //          [ elem0, elem1, elem2, ... ]
 ostream &operator<<(ostream & os, const IntVector &v) {
 
-  // TASK 1 - ADD YOUR CODE HERE
+  //реализация
 
-  return os; // always do this at end of << operator
+  return os; 
 }
